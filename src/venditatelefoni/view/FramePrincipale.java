@@ -12,27 +12,15 @@ import java.awt.*;
 
 public class FramePrincipale extends JFrame{
 	
-	//private JButton bottoneCompra;
-	//private JButton bottoneVendi;
-	//private TextArea textArea;
 	private SceltaIniziale start;
-	
 	
 	public FramePrincipale() {
 		
 		super("Swappie");
 		
-		//bottoneCompra = new JButton("Compra");
-		//bottoneVendi = new JButton("Vendi");
-		//textArea = new TextArea("Benvenuto, scegli se acquistare o vendere il tuo Smarphone!");
 		start = new SceltaIniziale();
 		
 		add(start, BorderLayout.CENTER);
-		/*add(textArea, BorderLayout.LINE_START);
-		add(bottoneCompra, BorderLayout.PAGE_START);
-		add(bottoneVendi, BorderLayout.CENTER);*/
-		
-		
 		
 		setSize(400, 100); // size della finestra
 		setLocationRelativeTo(null); // farla comparire al centro
@@ -47,7 +35,6 @@ class SceltaIniziale extends JPanel implements ActionListener {
 	
 	private JButton bottoneCompra;
 	private JButton bottoneVendi;
-	//private TextField textField;
 	private JLabel labelBenvenuto;
 	
 	public SceltaIniziale() {
@@ -69,7 +56,6 @@ class SceltaIniziale extends JPanel implements ActionListener {
 		bottoneVendi.addActionListener(this);
 		
 	}
-	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
