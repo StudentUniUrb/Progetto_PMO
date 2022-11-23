@@ -1,8 +1,8 @@
-package venditatelefoni.implementazione;
+package venditatelefoni.view;
 
-import venditatelefoni.modello.Smartphone;
+import java.util.EventObject;
 
-public class SmartphoneImpl implements Smartphone {
+public class FormEvent extends EventObject {
 	
 	private String nome;
 	private int memoria;
@@ -10,7 +10,17 @@ public class SmartphoneImpl implements Smartphone {
 	private double display;
 	private int fotocamera;
 	
-	public SmartphoneImpl(String nome, int memoria, String cpu, double display, int fotocamera) {
+	public FormEvent(Object source) {
+		super(source);
+	}
+	
+	public FormEvent(Object source, String nome) {
+		super(source);
+		this.nome = nome;
+	}
+
+	public FormEvent(Object source, String nome, int memoria, String cpu, double display, int fotocamera) {
+		super(source);
 		this.nome = nome;
 		this.memoria = memoria;
 		this.cpu = cpu;
@@ -37,12 +47,8 @@ public class SmartphoneImpl implements Smartphone {
 	public int getFotocamera() {
 		return fotocamera;
 	}
-
-	@Override
-	public String toString() {
-		return "SmartphoneImpl [nome=" + nome + ", memoria=" + memoria + ", cpu=" + cpu + ", display=" + display
-				+ ", fotocamera=" + fotocamera + "]";
-	}
-
+	
+	
+	
 
 }

@@ -4,19 +4,26 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.border.Border;
+
+import venditatelefoni.modello.FormListener;
 
 public class PannelloRicerca extends JPanel{
 	
 	private JLabel labelRicerca;
 	private JComboBox listaSmartphone;
 	private JButton bottoneCerca;
+	
+	private FormListener formListener;
 	
 	public PannelloRicerca() {
 		
@@ -28,15 +35,30 @@ public class PannelloRicerca extends JPanel{
 		Border bordoFinale = BorderFactory.createCompoundBorder(bordoEsterno, bordoInterno);
 		setBorder(bordoFinale);
 		
-		
 		// menu a tendina
 		labelRicerca = new JLabel("Trova il tuo Smartphone");
-		String[] opzioniSmartphne = {"Tutti", "iPhone8", "iPhoneX", "iPhone11", "iPhone12", "iPhone13", "iPhone14"}; // lista menu a tendina
-		listaSmartphone = new JComboBox(opzioniSmartphne); // creazione menu a tendina
+		String[] opzioniSmartpohne = {"Tutti", "iPhone8", "iPhoneX", "iPhone11", "iPhone12", "iPhone13", "iPhone14"}; // lista menu a tendina
+		listaSmartphone = new JComboBox(opzioniSmartpohne); // creazione menu a tendina
 		listaSmartphone.setSelectedIndex(0); // impostare il valore default visualizzato: "Tutti"
 		listaSmartphone.setEditable(false); // combox non modificabile
 		
 		bottoneCerca = new JButton("Cerca!");
+		// Quando il bottone CERCA viene premuto
+		bottoneCerca.addActionListener(new ActionListener () {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String scelta = (String) listaSmartphone.getSelectedItem();
+				
+				FormEvent formEvent = new FormEvent(this, scelta);
+				if(formListener != null) {
+					formListener.formEventListener(formEvent);
+				}
+
+				//new JRadioButton("ciao");
+			}
+			
+		});
 		
 		//Layout
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -72,7 +94,8 @@ public class PannelloRicerca extends JPanel{
 		
 		add(bottoneCerca, gbc);
 		
-		
 	}
+	
+	
 
 }

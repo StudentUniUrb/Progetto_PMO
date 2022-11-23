@@ -139,9 +139,6 @@ public class PannelloVendita extends JPanel{
 		gbc.weightx = 1;
 		gbc.weighty = 1;
 		
-		//gbc.gridwidth = 1;
-		//gbc.gridheight = 1;
-		
 		gbc.anchor = GridBagConstraints.LINE_START;
 		
 		add(labelMemoria, gbc);
@@ -151,9 +148,6 @@ public class PannelloVendita extends JPanel{
 		gbc.gridy = 1;
 		gbc.weightx = 1;
 		gbc.weighty = 1;
-		
-		//gbc.gridwidth = 1;
-		//gbc.gridheight = 1;
 		
 		add(minima, gbc);
 		
@@ -165,9 +159,6 @@ public class PannelloVendita extends JPanel{
 		gbc.weightx = 1;
 		gbc.weighty = 1;
 		
-		//gbc.gridwidth = 1;
-		//gbc.gridheight = 1;
-		
 		gbc.anchor = GridBagConstraints.LINE_START;
 		
 		add(media, gbc);
@@ -177,9 +168,6 @@ public class PannelloVendita extends JPanel{
 		gbc.gridy = 1;
 		gbc.weightx = 1;
 		gbc.weighty = 1;
-		
-		//gbc.gridwidth = 1;
-		//gbc.gridheight = 1;
 		
 		gbc.anchor = GridBagConstraints.LINE_START;
 		
@@ -197,8 +185,6 @@ public class PannelloVendita extends JPanel{
 		
 		gbc.anchor = GridBagConstraints.LINE_START;
 		
-		//gbc.insets = new Insets(0, 0, 0, 5); 
-		
 		add(labelSchermo, gbc);
 		
 		//RIGA 2: listaSchermo
@@ -212,8 +198,6 @@ public class PannelloVendita extends JPanel{
 		gbc.gridheight = 1;
 		
 		gbc.anchor = GridBagConstraints.LINE_START;
-		
-		//gbc.insets = new Insets(0, 0, 0, 5); 
 		
 		add(listaSchermo, gbc);
 				
