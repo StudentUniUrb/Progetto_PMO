@@ -12,6 +12,7 @@ public class FrameCompra extends JFrame{
 	
 	private PannelloRicerca pannelloRicerca;
 	private PannelloListaTelefoni pannelloTelefoni;
+	private int y = 0;
 	
 	public FrameCompra() {
 		
@@ -20,7 +21,7 @@ public class FrameCompra extends JFrame{
 		pannelloRicerca = new PannelloRicerca();
 		pannelloTelefoni = new PannelloListaTelefoni();
 		
-		/*pannelloRicerca.setFormListener(new FormListener() {
+		pannelloRicerca.setFormListener(new FormListener() {
 			@Override
 			public void formEventListener(FormEvent fe) {
 				String nome = fe.getNome();
@@ -29,14 +30,9 @@ public class FrameCompra extends JFrame{
 				double display = fe.getDisplay();
 				int fotocamera = fe.getFotocamera();
 		
-				pannelloTelefoni.addJRadioButton(nome + memoria + cpu + display + fotocamera);
+				pannelloTelefoni.addJCheckBox(nome + " " + memoria + "GB" + " " + cpu + " " + display + "pollici" + " " + fotocamera + "MP", y);
+				y++;
 			}	
-		});*/
-		pannelloRicerca.setButtonListener(new ButtonListener() {
-			@Override
-			public void addJRadioButton(String titolo) {
-				pannelloTelefoni.addJRadioButton(titolo);
-			}
 		});
 		
 		add(pannelloRicerca, BorderLayout.LINE_START);
