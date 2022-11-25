@@ -19,14 +19,14 @@ public class FormEvent extends EventObject {
 		this.nome = nome;
 	}
 
-	public FormEvent(Object source, String nome, int memoria, String cpu, double display, int fotocamera) {
+	/*public FormEvent(Object source, String nome, int memoria, String cpu, double display, int fotocamera) {
 		super(source);
 		this.nome = nome;
 		this.memoria = memoria;
 		this.cpu = cpu;
 		this.display = display;
 		this.fotocamera = fotocamera;
-	}
+	}*/
 
 	public String getNome() {
 		return nome;

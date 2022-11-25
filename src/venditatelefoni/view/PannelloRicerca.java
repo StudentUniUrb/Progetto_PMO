@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.Border;
 
+import venditatelefoni.modello.ButtonListener;
 import venditatelefoni.modello.FormListener;
 
 public class PannelloRicerca extends JPanel{
@@ -24,6 +25,7 @@ public class PannelloRicerca extends JPanel{
 	private JButton bottoneCerca;
 	
 	private FormListener formListener;
+	private ButtonListener buttonListener;
 	
 	public PannelloRicerca() {
 		
@@ -45,19 +47,19 @@ public class PannelloRicerca extends JPanel{
 		bottoneCerca = new JButton("Cerca!");
 		// Quando il bottone CERCA viene premuto
 		bottoneCerca.addActionListener(new ActionListener () {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String scelta = (String) listaSmartphone.getSelectedItem();
-				
+				/*String scelta = (String) listaSmartphone.getSelectedItem();
 				FormEvent formEvent = new FormEvent(this, scelta);
 				if(formListener != null) {
 					formListener.formEventListener(formEvent);
+				}*/
+				if(buttonListener != null) {
+					buttonListener.addJRadioButton("ciao");
 				}
-
-				//new JRadioButton("ciao");
+				revalidate();
+				repaint();
 			}
-			
 		});
 		
 		//Layout
@@ -96,6 +98,12 @@ public class PannelloRicerca extends JPanel{
 		
 	}
 	
+	public void setFormListener(FormListener formListener) {
+		this.formListener = formListener;
+	}
 	
+	public void setButtonListener(ButtonListener buttonListener) {
+		this.buttonListener = buttonListener;
+	}
 
 }
