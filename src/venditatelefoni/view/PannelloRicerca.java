@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -27,10 +28,11 @@ public class PannelloRicerca extends JPanel{
 	private JLabel labelRicerca;
 	private JComboBox listaSmartphone;
 	private JButton bottoneCerca;
-	private JButton compraTelefono;
+	//private JButton compraTelefono;
 	private Negozio negozio;
 	
 	private FormListener formListener;
+	//private FormListener compraListener;
 	//private ButtonListener buttonListener;
 	
 	public PannelloRicerca() {
@@ -59,7 +61,7 @@ public class PannelloRicerca extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				//List<SmartphoneImpl> telefoni = new LinkedList<>();
 				String scelta = (String) listaSmartphone.getSelectedItem();
-				List<SmartphoneImpl> telefoni =  negozio.listaTelefoni(scelta);
+				Set<SmartphoneImpl> telefoni =  negozio.listaTelefoniByName(scelta);
 				for(SmartphoneImpl telefono : telefoni) {
 					int memoria = telefono.getMemoria();
 					String cpu = telefono.getCpu();
@@ -76,15 +78,25 @@ public class PannelloRicerca extends JPanel{
 			}
 		});
 		
-		compraTelefono = new JButton("Compra!");
-		//compraTelefono.addActionListener(); // quando premo il bottone compra
+		/*compraTelefono = new JButton("Compra!");
+		// quando premo il bottone compra
 		compraTelefono.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				Set<SmartphoneImpl> telefoni = negozio.getListaTelefoni();
+				for(SmartphoneImpl telefono : telefoni) {
+					
+				}
 				
+				FormEvent formEvent = new FormEvent(telefoni);
+				negozio.rimuoviTelefono(telefoni);
+				System.out.println(compraListener);
+				if(compraListener != null) {
+					compraListener.CompraEventListener(formEvent);
+					System.out.println("addio");
+				}
 			}
-		});
+		});*/
 		
 		//Layout
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -121,7 +133,7 @@ public class PannelloRicerca extends JPanel{
 		add(bottoneCerca, gbc);
 		
 		//RIGA 2
-		gbc.gridx = 0;
+		/*gbc.gridx = 0;
 		gbc.gridy = 2;
 		gbc.weightx = 0.01;
 		gbc.weighty = 0.01;
@@ -131,7 +143,7 @@ public class PannelloRicerca extends JPanel{
 		
 		gbc.anchor = GridBagConstraints.PAGE_END;
 		
-		add(compraTelefono, gbc);
+		add(compraTelefono, gbc);*/
 		
 		
 	}
