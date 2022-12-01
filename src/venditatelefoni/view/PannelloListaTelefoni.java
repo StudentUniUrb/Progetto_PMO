@@ -1,34 +1,23 @@
 package venditatelefoni.view;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 
 import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
 import javax.swing.border.Border;
 
-import venditatelefoni.implementazione.Negozio;
-import venditatelefoni.modello.FormListener;
 
-public class PannelloListaTelefoni extends JPanel{
+public class PannelloListaTelefoni extends JPanel implements ActionListener{
 	
-	//private FormListener formListener;
-	private Set<CheckBox> checkBoxes;
+	private Set<JCheckBox> checkBoxes;
+	private Set<JCheckBox> selezionate;
 	private JButton bottoneCompra;
 
 	public PannelloListaTelefoni() {
@@ -41,24 +30,10 @@ public class PannelloListaTelefoni extends JPanel{
 		setBorder(bordoFinale);
 		
 		this.checkBoxes = new HashSet<>();
-		/*this.bottoneCompra = new JButton("Compra!");
-		bottoneCompra.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Set<SmartphoneImpl> telefoni = negozio.getListaTelefoni();
-				for(SmartphoneImpl telefono : telefoni) {
-					
-				}
-				
-				FormEvent formEvent = new FormEvent(telefoni);
-				negozio.rimuoviTelefono(telefoni);
-				System.out.println(compraListener);
-				if(compraListener != null) {
-					compraListener.CompraEventListener(formEvent);
-					System.out.println("addio");
-				}
-			}
-		});*/ // NON ABBIAMO NEGOZIO 
+		this.selezionate = new HashSet<>();
+	
+		this.bottoneCompra = new JButton("Compra!");
+		
 		//Layout
 		GridBagConstraints gbc = new GridBagConstraints();
 		
@@ -75,8 +50,9 @@ public class PannelloListaTelefoni extends JPanel{
 	}
 	
 	public void addJCheckBox(String titolo, int y) {
-		CheckBox checkBox = new CheckBox(titolo, this.checkBoxes);
-		//System.out.println("ciao" + this.checkBoxes);
+		JCheckBox checkBox = new JCheckBox(titolo);
+		this.checkBoxes.add(checkBox);
+		checkBox.addActionListener(this);
 		//Layout
 		GridBagConstraints gbc = new GridBagConstraints();
 		
@@ -86,48 +62,49 @@ public class PannelloListaTelefoni extends JPanel{
 		gbc.weighty = 0.01;
 		
 		gbc.anchor = GridBagConstraints.CENTER;
-		
-		add(checkBox.getScelta(), gbc);
+		add(checkBox, gbc);
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		Object azione = e.getSource();
+		JCheckBox selezionato = (JCheckBox) azione;
+		if(selezionato.isSelected()) {
+			this.selezionate.add(selezionato);
+			//System.out.println("1 " + this.selezionate);
+		} else if(!selezionato.isSelected()) {
+			this.selezionate.remove(selezionato);
+			//System.out.println("2 " + this.selezionate);
+		}
 	}
 
-	public Set<CheckBox> getCheckBoxes() {
+	public Set<JCheckBox> getCheckBoxes() {
 		return this.checkBoxes;
 	}
 	
-	/*public void removeJCheckBox(Set<CheckBox> selezionati) {
-		this.checkBoxes.removeAll(selezionati);
-	}*/
+	public Set<String> removeJCheckBoxSet() {
+		Set<String> titolo = new HashSet<>();
+		for(JCheckBox jb : this.selezionate) {
+			titolo.add(jb.getText());
+			jb.setVisible(false);
+		}
+		return titolo;
+	}
+	
 	public void removeJCheckBox(String titolo) {
-		for(CheckBox c : this.checkBoxes) {
-			if(c.getTitolo().equals(titolo)) {
+		for(JCheckBox c : this.checkBoxes) {
+			if(c.getText().equals(titolo)) {
 				this.checkBoxes.remove(c);
 			}
 		}
 	}
-	
-	
-	
-	/*public List<JCheckBox> addJCheckBox(String titolo, int y) {
-		JCheckBox checkBox = new JCheckBox(titolo);
-		
-		//checkBox.addActionListener(this);
-		checkBox.addActionListener(new ActionListener() {
-			private List<JCheckBox> list = new LinkedList<>();
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(checkBox.isSelected()) {
-					list.add(checkBox);
-					System.out.println("aggiungi: " + list);
-				} else if(!checkBox.isSelected()) {
-					list.remove(checkBox);
-					System.out.println("rimuovi: " + list);
-				}
-			}
-			// L'IDEA ORA E' CREARE UN'ALTRA CLASSE CHECKBOX CHE GESTISCE
-			// QUELLO CHE SUCCEDE QUANDO PREMO UNA CHECKBOX
-		}); 
-		
 
-	}*/
+	public JButton getBottoneCompra() {
+		return this.bottoneCompra;
+	}
+
+	public Set<JCheckBox> getSelezionate() {
+		return this.selezionate;
+	}
+	
 	
 }

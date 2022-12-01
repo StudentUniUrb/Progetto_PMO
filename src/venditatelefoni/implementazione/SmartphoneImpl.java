@@ -43,6 +43,10 @@ public class SmartphoneImpl implements Smartphone {
 		return "SmartphoneImpl [nome=" + nome + ", memoria=" + memoria + ", cpu=" + cpu + ", display=" + display
 				+ ", fotocamera=" + fotocamera + "]";
 	}
+	
+	public String nomeTelefono() {
+		return nome + memoria + cpu + display + fotocamera;
+	}
 
 
 }

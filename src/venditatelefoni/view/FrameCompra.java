@@ -1,49 +1,49 @@
 package venditatelefoni.view;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import venditatelefoni.implementazione.Negozio;
 import venditatelefoni.implementazione.SmartphoneImpl;
-import venditatelefoni.modello.ButtonListener;
-import venditatelefoni.modello.FormListener;
-
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Set;
 
 public class FrameCompra extends JFrame{
 	
 	private PannelloRicerca pannelloRicerca;
+	private Negozio negozio;
+	//private CheckBox checkBox;
 	private PannelloListaTelefoni pannelloTelefoni;
-	private int y = 0;
+	private int y = 1;
 	
 	public FrameCompra() {
 		
 		super("Acquista su swappie");
-		
 		pannelloRicerca = new PannelloRicerca();
 		pannelloTelefoni = new PannelloListaTelefoni();
+		negozio = new Negozio();
 		
-		pannelloRicerca.setFormListener(new FormListener() {
+		pannelloRicerca.getBottoneCerca().addActionListener(new ActionListener() {
 			@Override
-			public void formEventListener(FormEvent fe) {
-				String nome = fe.getNome();
-				int memoria = fe.getMemoria();
-				String cpu = fe.getCpu();
-				double display = fe.getDisplay();
-				int fotocamera = fe.getFotocamera();
-		
-				pannelloTelefoni.addJCheckBox(nome + " " + memoria + "GB" + " " + cpu + " " + display + "pollici" + " " + fotocamera + "MP", y);
-				y++;
+			public void actionPerformed(ActionEvent e) {
+				String scelta = pannelloRicerca.getSceltaMenu();
+				Set<SmartphoneImpl> telefoni =  negozio.listaTelefoniByName(scelta);
+				for(SmartphoneImpl telefono : telefoni) {
+					String smartphone = telefono.getNome() +  telefono.getMemoria() + telefono.getCpu() + telefono.getDisplay() + telefono.getFotocamera();
+					pannelloTelefoni.addJCheckBox(smartphone, y);
+					y++;
+				}
+				revalidate();
+				repaint();
 			}
+		});
+		
+		pannelloTelefoni.getBottoneCompra().addActionListener(new ActionListener() {
 			@Override
-			public void CompraEventListener(FormEvent fe) {
-				System.out.println("aiuto");
-				//Set<CheckBox> checkbox = fe.getCheckboxes();
-				String nome = fe.getNome();
-				pannelloTelefoni.removeJCheckBox(nome);
-				System.out.println("aiuto1");
-				//pannelloTelefoni.removeJCheckBox(checkbox);
-				System.out.println("aiuto2");
+			public void actionPerformed(ActionEvent e) {
+				Set<String> nomiTelefoni = pannelloTelefoni.removeJCheckBoxSet();
+				negozio.rimuoviTelefonoByName(nomiTelefoni);
 			}
 		});
 		

@@ -1,4 +1,4 @@
-package venditatelefoni.view;
+package venditatelefoni.daeliminare;
 
 import java.util.EventObject;
 import java.util.Set;

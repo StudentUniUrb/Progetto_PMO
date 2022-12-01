@@ -1,13 +1,10 @@
 package venditatelefoni.implementazione;
 
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 
 public class Negozio {
 	
-	//private SmartphoneImpl iphone8;
 	private Set<SmartphoneImpl> listaTelefoni;
 	
 	public Negozio() {
@@ -19,17 +16,17 @@ public class Negozio {
 	}
 
 	public Set<SmartphoneImpl> getListaTelefoni() {
-		return listaTelefoni;
+		return this.listaTelefoni;
 	}
 	
-	public SmartphoneImpl cercaTelefono(String nome) {
+	/*public SmartphoneImpl cercaTelefono(String nome) {
 		for(SmartphoneImpl s : this.listaTelefoni) {
 			if(s.getNome().equals(nome)) {
 				return s;
 			}
 		}
 		return null;
-	}
+	}*/
 	
 	public Set<SmartphoneImpl> listaTelefoniByName(String nome) {
 		Set<SmartphoneImpl> copia = new HashSet<>();
@@ -38,12 +35,24 @@ public class Negozio {
 				copia.add(s);
 			}
 		}
-		
 		return copia;
 	}
 	
-	public void rimuoviTelefono(/*SmartphoneImpl smpartphone*/Set<SmartphoneImpl> set) {
+	/*public void rimuoviTelefono(Set<SmartphoneImpl> set) {
 		this.listaTelefoni.removeAll(set);
+	}*/
+	
+	public void rimuoviTelefonoByName(Set<String> set) {
+		Set<SmartphoneImpl> appoggio = new HashSet<>();
+		for(SmartphoneImpl smart : this.listaTelefoni) {
+			for(String string : set) {
+				if(smart.nomeTelefono().equals(string)) {
+					appoggio.add(smart);
+				}
+			}
+		}
+		this.listaTelefoni.removeAll(appoggio);
+		//System.out.println(this.listaTelefoni); // FUNZIONA
 	}
 	
 

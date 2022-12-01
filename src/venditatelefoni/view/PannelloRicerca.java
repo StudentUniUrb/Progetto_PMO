@@ -3,25 +3,13 @@ package venditatelefoni.view;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.border.Border;
-
-import venditatelefoni.implementazione.Negozio;
-import venditatelefoni.implementazione.SmartphoneImpl;
-import venditatelefoni.modello.ButtonListener;
-import venditatelefoni.modello.FormListener;
 
 public class PannelloRicerca extends JPanel{
 	
@@ -29,15 +17,15 @@ public class PannelloRicerca extends JPanel{
 	private JComboBox listaSmartphone;
 	private JButton bottoneCerca;
 	//private JButton compraTelefono;
-	private Negozio negozio;
+	//private Negozio negozio;
 	
-	private FormListener formListener;
+	//private FormListener formListener;
 	//private FormListener compraListener;
 	//private ButtonListener buttonListener;
 	
 	public PannelloRicerca() {
 		
-		this.negozio = new Negozio();
+		//this.negozio = new Negozio();
 		
 		setPreferredSize(new Dimension(300, 200));
 		setLayout(new GridBagLayout());
@@ -56,7 +44,7 @@ public class PannelloRicerca extends JPanel{
 		
 		bottoneCerca = new JButton("Cerca!");
 		// Quando il bottone CERCA viene premuto
-		bottoneCerca.addActionListener(new ActionListener () {
+		/*bottoneCerca.addActionListener(new ActionListener () {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//List<SmartphoneImpl> telefoni = new LinkedList<>();
@@ -76,7 +64,7 @@ public class PannelloRicerca extends JPanel{
 				revalidate();
 				repaint();
 			}
-		});
+		});*/
 		
 		/*compraTelefono = new JButton("Compra!");
 		// quando premo il bottone compra
@@ -147,13 +135,23 @@ public class PannelloRicerca extends JPanel{
 		
 		
 	}
-	
-	public void setFormListener(FormListener formListener) {
-		this.formListener = formListener;
+
+	public JButton getBottoneCerca() {
+		return this.bottoneCerca;
 	}
+	
+	public String getSceltaMenu() {
+		//String scelta = (String) listaSmartphone.getSelectedItem();
+		return (String) listaSmartphone.getSelectedItem();
+	}
+	
+	/*public void setFormListener(FormListener formListener) {
+		this.formListener = formListener;
+	}*/
 	
 	/*public void setButtonListener(ButtonListener buttonListener) {
 		this.buttonListener = buttonListener;
 	}*/
+	
 
 }

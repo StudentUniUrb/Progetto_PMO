@@ -1,4 +1,4 @@
-package venditatelefoni.view;
+package venditatelefoni.daeliminare;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -14,15 +14,13 @@ public class CheckBox implements ActionListener {
 	private Set<JCheckBox> set;
 	private String titolo;
 	
-	public CheckBox(String titolo, Set set) {
+	public CheckBox(String titolo, Set<JCheckBox> set) {
 		this.set = set;
 		this.titolo = titolo;
 		this.scelta = new JCheckBox(this.titolo);
 		this.scelta.addActionListener(this);
 	}
 
-	
-	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(this.scelta.isSelected()) {
@@ -48,5 +46,9 @@ public class CheckBox implements ActionListener {
 		return titolo;
 	}
 
-
+	public void removeJCheckBoxSet(Set<CheckBox> set) {
+		this.scelta.setEnabled(false);
+	}
+	
+	
 }
