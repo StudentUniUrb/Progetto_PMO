@@ -13,7 +13,6 @@ public class FrameCompra extends JFrame{
 	
 	private PannelloRicerca pannelloRicerca;
 	private Negozio negozio;
-	//private CheckBox checkBox;
 	private PannelloListaTelefoni pannelloTelefoni;
 	private int y = 1;
 	
@@ -28,11 +27,21 @@ public class FrameCompra extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String scelta = pannelloRicerca.getSceltaMenu();
-				Set<SmartphoneImpl> telefoni =  negozio.listaTelefoniByName(scelta);
-				for(SmartphoneImpl telefono : telefoni) {
-					String smartphone = telefono.getNome() +  telefono.getMemoria() + telefono.getCpu() + telefono.getDisplay() + telefono.getFotocamera();
-					pannelloTelefoni.addJCheckBox(smartphone, y);
-					y++;
+				if(scelta == "Tutti") {
+					Set<SmartphoneImpl> telefoni = negozio.getListaTelefoni();
+					for(SmartphoneImpl telefono : telefoni) {
+						String smartphone = telefono.getNome() +  telefono.getMemoria() + telefono.getCpu() + telefono.getDisplay() + telefono.getFotocamera();
+						pannelloTelefoni.addJCheckBox(smartphone, y);
+						y++;
+					}
+					
+				} else {
+					Set<SmartphoneImpl> telefoni =  negozio.listaTelefoniByName(scelta);
+					for(SmartphoneImpl telefono : telefoni) {
+						String smartphone = telefono.getNome() +  telefono.getMemoria() + telefono.getCpu() + telefono.getDisplay() + telefono.getFotocamera();
+						pannelloTelefoni.addJCheckBox(smartphone, y);
+						y++;
+					}
 				}
 				revalidate();
 				repaint();

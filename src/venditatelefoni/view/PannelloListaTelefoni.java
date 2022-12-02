@@ -5,6 +5,8 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import javax.swing.BorderFactory;
@@ -51,18 +53,33 @@ public class PannelloListaTelefoni extends JPanel implements ActionListener{
 	
 	public void addJCheckBox(String titolo, int y) {
 		JCheckBox checkBox = new JCheckBox(titolo);
-		this.checkBoxes.add(checkBox);
-		checkBox.addActionListener(this);
-		//Layout
-		GridBagConstraints gbc = new GridBagConstraints();
+		if(!CheckBoxUguali(checkBox)) {
+			this.checkBoxes.add(checkBox);
+			checkBox.addActionListener(this);
+			//Layout
+			GridBagConstraints gbc = new GridBagConstraints();
+			
+			//RIGA 0
+			gbc.gridy = y;
+			gbc.weightx = 0.01;
+			gbc.weighty = 0.01;
+			
+			gbc.anchor = GridBagConstraints.CENTER;
+			add(checkBox, gbc);
+			//System.out.println(this.checkBoxes);
+		}
 		
-		//RIGA 0
-		gbc.gridy = y;
-		gbc.weightx = 0.01;
-		gbc.weighty = 0.01;
-		
-		gbc.anchor = GridBagConstraints.CENTER;
-		add(checkBox, gbc);
+	}
+	
+	private boolean CheckBoxUguali(JCheckBox jb) {
+		for(JCheckBox x : this.checkBoxes) {
+			if(x.getText().equals(jb.getText())) {
+				this.checkBoxes.remove(jb);
+				jb.setVisible(false);
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -70,10 +87,8 @@ public class PannelloListaTelefoni extends JPanel implements ActionListener{
 		JCheckBox selezionato = (JCheckBox) azione;
 		if(selezionato.isSelected()) {
 			this.selezionate.add(selezionato);
-			//System.out.println("1 " + this.selezionate);
 		} else if(!selezionato.isSelected()) {
 			this.selezionate.remove(selezionato);
-			//System.out.println("2 " + this.selezionate);
 		}
 	}
 

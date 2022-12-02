@@ -16,16 +16,8 @@ public class PannelloRicerca extends JPanel{
 	private JLabel labelRicerca;
 	private JComboBox listaSmartphone;
 	private JButton bottoneCerca;
-	//private JButton compraTelefono;
-	//private Negozio negozio;
-	
-	//private FormListener formListener;
-	//private FormListener compraListener;
-	//private ButtonListener buttonListener;
 	
 	public PannelloRicerca() {
-		
-		//this.negozio = new Negozio();
 		
 		setPreferredSize(new Dimension(300, 200));
 		setLayout(new GridBagLayout());
@@ -43,48 +35,6 @@ public class PannelloRicerca extends JPanel{
 		listaSmartphone.setEditable(false); // combox non modificabile
 		
 		bottoneCerca = new JButton("Cerca!");
-		// Quando il bottone CERCA viene premuto
-		/*bottoneCerca.addActionListener(new ActionListener () {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				//List<SmartphoneImpl> telefoni = new LinkedList<>();
-				String scelta = (String) listaSmartphone.getSelectedItem();
-				Set<SmartphoneImpl> telefoni =  negozio.listaTelefoniByName(scelta);
-				for(SmartphoneImpl telefono : telefoni) {
-					int memoria = telefono.getMemoria();
-					String cpu = telefono.getCpu();
-					double display = telefono.getDisplay();
-					int fotocamera = telefono.getFotocamera();
-					FormEvent formEvent = new FormEvent(this, scelta, memoria, cpu, display, fotocamera);
-					if(formListener != null) {
-						formListener.formEventListener(formEvent);
-					}
-				}
-				//System.out.println(telefoni);
-				revalidate();
-				repaint();
-			}
-		});*/
-		
-		/*compraTelefono = new JButton("Compra!");
-		// quando premo il bottone compra
-		compraTelefono.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Set<SmartphoneImpl> telefoni = negozio.getListaTelefoni();
-				for(SmartphoneImpl telefono : telefoni) {
-					
-				}
-				
-				FormEvent formEvent = new FormEvent(telefoni);
-				negozio.rimuoviTelefono(telefoni);
-				System.out.println(compraListener);
-				if(compraListener != null) {
-					compraListener.CompraEventListener(formEvent);
-					System.out.println("addio");
-				}
-			}
-		});*/
 		
 		//Layout
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -120,19 +70,6 @@ public class PannelloRicerca extends JPanel{
 		
 		add(bottoneCerca, gbc);
 		
-		//RIGA 2
-		/*gbc.gridx = 0;
-		gbc.gridy = 2;
-		gbc.weightx = 0.01;
-		gbc.weighty = 0.01;
-		
-		gbc.gridwidth = 2;
-		gbc.gridheight = 1;
-		
-		gbc.anchor = GridBagConstraints.PAGE_END;
-		
-		add(compraTelefono, gbc);*/
-		
 		
 	}
 
@@ -141,17 +78,8 @@ public class PannelloRicerca extends JPanel{
 	}
 	
 	public String getSceltaMenu() {
-		//String scelta = (String) listaSmartphone.getSelectedItem();
 		return (String) listaSmartphone.getSelectedItem();
 	}
-	
-	/*public void setFormListener(FormListener formListener) {
-		this.formListener = formListener;
-	}*/
-	
-	/*public void setButtonListener(ButtonListener buttonListener) {
-		this.buttonListener = buttonListener;
-	}*/
-	
+
 
 }
